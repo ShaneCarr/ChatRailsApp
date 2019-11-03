@@ -57,10 +57,10 @@ group :test do
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
 end
-#d
-#d
-#dd
 
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem 'jquery-rails'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
+gem 'rails-ujs', '~> 0.1.0'
+gem 'bootstrap', '~> 4.3.1'
+gem 'simple_form'

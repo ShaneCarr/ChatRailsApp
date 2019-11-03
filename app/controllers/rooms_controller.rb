@@ -3,7 +3,7 @@
 # #
 class RoomsController < ApplicationController
   def index
-    @message = 'Hello world!'
+    @message = 'Hello world! Shane'
     @message.upcase!
   end
 end
