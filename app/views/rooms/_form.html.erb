@@ -1,0 +1,5 @@
+<!--<!- a simple fails form for a room object will use this for save probably edit.->-->
+<%= simple_form_for @room do |form| %>
+  <%= form.input :name %>
+  <%= form.submit "Save", class: 'btn btn-success' %>
+<% end %>
