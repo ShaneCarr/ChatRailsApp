@@ -4,27 +4,37 @@
 
 <div class="row">
   <div class="col-12 col-md-3">
-    <!-- the list of rooms is reused in index as well.-->
     <%= render partial: 'rooms' %>
   </div>
 
   <div class="col">
-    <div class="chat">
-      <% @room_messages.each do |room_message| %>
-        <%= room_message %>
+    <!-- channel subscribe -->
+    <div class="chat" data-channel-subscribe="room" data-room-id="<%= @room.id %>">
+    <% @room_messages.each do |room_message| %>
+        <div class="chat-message-container">
+          <div class="row no-gutters">
+            <div class="col-auto text-center">
+              <img src="<%= room_message.user.gravatar_url %>" class="avatar" alt="">
+            </div>
+
+            <div class="col">
+              <div class="message-content">
+                <p class="mb-1">
+                  <%= room_message.message %>
+                </p>
+
+                <div class="text-right">
+                  <small>
+                    <%= room_message.created_at %>
+                  </small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       <% end %>
     </div>
 
-    <!--
-    Notes:
-
-    We reused the app/views/rooms/_rooms.html.erb partial that we created in the previous step
-    We added a div with class .chat and this is where the room’s messages are renderer.
-    We added a form for the @room_message that we instantiated in the controller. We also used the directive remote: true when we instantiated the form thus the form is going to be submitted by Ajax.
-    We added a hidden field for the attribute :room_id so that the value reaches the RoomMessagesController once we submit the form.
-
-
-    -->
     <%= simple_form_for @room_message, remote: true do |form| %>
       <div class="input-group mb-3">
         <%= form.input :message, as: :string,
@@ -40,5 +50,30 @@
 
       <%= form.input :room_id, as: :hidden %>
     <% end %>
+  </div>
+</div>
+<!-- todo
+clone this html
+alter the appropriate elements’ values and
+append the resulting html to the end of the chat div.
+
+-->
+<div class="d-none" data-role="message-template">
+  <div class="chat-message-container">
+    <div class="row no-gutters">
+      <div class="col-auto text-center">
+        <img src="" class="avatar" alt="" data-role="user-avatar">
+      </div>
+
+      <div class="col">
+        <div class="message-content">
+          <p class="mb-1" data-role="message-text"></p>
+
+          <div class="text-right">
+            <small data-role="message-date"></small>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
